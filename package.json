@@ -1,0 +1,14 @@
+{
+  "name": "SLMSystem",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/Alao-Abiodun/SLMSystem.git",
+  "author": "Alao-Abiodun <46402042+Alao-Abiodun@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
