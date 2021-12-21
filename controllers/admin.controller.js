@@ -31,7 +31,7 @@ exports.adminSignIn = async (req, res) => {
     if (!admin) {
       throw Error("Admin does not exist", "BAD REQUEST", 401);
     }
-    const passwordCheck = await passwordCompare(password, user.password);
+    const passwordCheck = await passwordCompare(password, admin.password);
     if (!passwordCheck) {
       throw Error("Password are not correct", "BAD REQUEST", 401);
     }

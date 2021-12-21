@@ -11,6 +11,7 @@ const app = express();
 
 const bookRoute = require("./routes/book.route");
 const userRoute = require("./routes/user.route");
+const adminRoute = require("./routes/admin.route");
 
 const { PORT, DB_USERNAME, DB_PASSWORD } = process.env;
 
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/book", bookRoute);
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/admin", adminRoute);
 
 app.listen(PORT, async () => {
   try {
