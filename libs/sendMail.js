@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 const Response = require("../libs/response");
+const Error = require("../libs/error");
 const { EMAIL_USER, EMAIL_PASS, EMAIL_SERVER } = process.env;
 
 exports.sendMail = async (msg, subject, receiver) => {
@@ -19,7 +20,7 @@ exports.sendMail = async (msg, subject, receiver) => {
     });
 
     const info = await transporter.sendMail({
-      from: '"Grazac Academy" <admissions@grazacacademy.com>',
+      from: '"Library Management"',
       subject: subject,
       html: msg,
       to: receiver,
@@ -28,6 +29,6 @@ exports.sendMail = async (msg, subject, receiver) => {
     return `Message sent', ${nodemailer.getTestMessageUrl(info)}`;
   } catch (err) {
     console.log(err);
-    return Response(res).error(error.message, 500);
+    throw Error(err.message, 500);
   }
 };

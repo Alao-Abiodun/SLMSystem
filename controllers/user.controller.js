@@ -31,13 +31,14 @@ exports.userSignUp = async (req, res) => {
       role: newUser.role,
     };
     const token = jwtSign(payload);
-    let hostname = req.headers.host;
-    let verificationLink = `http://${hostname}/verify/${token}`;
-    const message = verificationTemplate(user.firstname, verificationLink);
-    await sendMail(message, "Activate your account", user.email);
+    // let hostname = req.headers.host;
+    // let verificationLink = `http://${hostname}/verify/${token}`;
+    // const message = verificationTemplate(newUser.firstname, verificationLink);
+    // await sendMail(message, "Activate your account", newUser.email);
     await newUser.save();
     return Response(res).success({ data: newUser, token }, 201);
   } catch (error) {
+    console.log(error);
     return Response(res).error(error.message, 500);
   }
 };
