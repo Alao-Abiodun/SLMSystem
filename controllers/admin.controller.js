@@ -17,6 +17,11 @@ exports.adminSignUp = async (req, res) => {
       email,
       password: hashedPassword,
     });
+    const payload = {
+      _id: newAdmin._id,
+      email: newAdmin.email,
+      role: newAdmin.role,
+    };
     await newAdmin.save();
     return Response(res).success({ data: newAdmin }, 201);
   } catch (error) {
