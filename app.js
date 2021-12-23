@@ -12,8 +12,9 @@ const app = express();
 const bookRoute = require("./routes/book.route");
 const userRoute = require("./routes/user.route");
 const adminRoute = require("./routes/admin.route");
+const googleRoute = require("./routes/google.route");
 
-const { PORT, DB_USERNAME, DB_PASSWORD } = process.env;
+const { PORT, MONGO_URI } = process.env;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,16 +36,14 @@ app.get("/", (req, res) => {
 app.use("/api/v1/book", bookRoute);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/admin", adminRoute);
+app.use("/api/v1/google", googleRoute);
 
 app.listen(PORT, async () => {
   try {
-    await mongoose.connect(
-      `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.iij5r.mongodb.net/SLMSystem_DB`,
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
+    await mongoose.connect(MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("Database is connected");
   } catch (error) {
     console.log(`Database Not Connected`);
