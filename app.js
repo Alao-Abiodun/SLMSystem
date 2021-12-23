@@ -30,7 +30,9 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.status(200).json("The main application already started");
+  res
+    .status(200)
+    .json("This is the version one of library management system API");
 });
 
 app.use("/api/v1/book", bookRoute);
