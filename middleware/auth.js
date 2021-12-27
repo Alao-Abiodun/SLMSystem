@@ -1,6 +1,6 @@
-const { jwtVerify } = require("../lib/jwt");
-const Response = require("../lib/Response");
-const Error = require("../lib/Error");
+const { jwtVerify } = require("../libs/jwt");
+const Response = require("../libs/Response");
+const Error = require("../libs/Error");
 
 const validateUserToken = (req, res, next) => {
   try {
@@ -26,6 +26,7 @@ const validateUserToken = (req, res, next) => {
 const validateAdmin = (req, res, next) => {
   try {
     const { role } = req.decoded;
+    console.log(role);
     if (role === "Admin") {
       next();
     } else {

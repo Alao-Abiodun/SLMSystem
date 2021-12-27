@@ -51,11 +51,20 @@ exports.userSignIn = async (req, res) => {
       throw Error("User does not exist", "BAD REQUEST", 401);
     }
     const passwordCheck = await passwordCompare(password, user.password);
+    console.log(passwordCheck);
     if (!passwordCheck) {
       throw Error("Password are not correct", "BAD REQUEST", 401);
     }
+    const payload = {
+      _id: user._id,
+      email: user.email,
+      role: user.role,
+    };
+    const token = jwtSign(payload);
     return Response(res).success({ message: "User login successfully" }, 200);
   } catch (error) {
-    return Response(res).error(error.message, 500);
+    console.log(error);
+    throw Error("Error Occured", "Server Error", 500);
+    // return Response(res).error(error, 500);
   }
 };
