@@ -30,9 +30,11 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res
-    .status(200)
-    .json("This is the version one of library management system API");
+  let name = "API-Documentation Link";
+  res.status(200).json({
+    message: "This is the version one of library management system API",
+    "api-documentation_link": `<a href="https://documenter.getpostman.com/view/15379432/UVREkQDz" target="_blank">${name}</a>`,
+  });
 });
 
 app.use("/api/v1/book", bookRoute);
