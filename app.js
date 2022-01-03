@@ -12,7 +12,7 @@ const app = express();
 const bookRoute = require("./routes/book.route");
 const userRoute = require("./routes/user.route");
 const adminRoute = require("./routes/admin.route");
-const googleRoute = require("./routes/google.route");
+// const googleRoute = require("./routes/google.route");
 
 const { PORT, MONGO_URI } = process.env;
 
@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/book", bookRoute);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/admin", adminRoute);
-app.use("/api/v1/google", googleRoute);
+// app.use("/api/v1/google", googleRoute);
 
 app.listen(PORT, async () => {
   try {
