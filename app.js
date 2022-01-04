@@ -30,10 +30,15 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  let name = "API-Documentation Link";
+  let name = "API-Documentation-Link";
+  let html = `<html>
+                <body>
+                  <a href='https://documenter.getpostman.com/view/15379432/UVREkQDz'>${name}</a>
+                </body>
+              </html>`;
   res.status(200).json({
     message: "This is the version one of library management system API",
-    "api-documentation_link": `<a href="https://documenter.getpostman.com/view/15379432/UVREkQDz" target="_blank">${name}</a>`,
+    "api-documentation_link": `${html}`,
   });
 });
 
