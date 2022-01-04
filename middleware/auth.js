@@ -1,6 +1,6 @@
 const { jwtVerify } = require("../libs/jwt");
-const Response = require("../libs/Response");
-const Error = require("../libs/Error");
+const Response = require("../libs/response");
+const Error = require("../libs/error");
 
 const validateUserToken = (req, res, next) => {
   try {
