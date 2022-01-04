@@ -64,7 +64,6 @@ exports.blockUser = async (req, res) => {
     console.log(req.decoded.role);
     const { id } = req.query;
     const user = await User.findOne({ _id: id });
-    console.log(user);
     if (!user) {
       throw Error("User Not Found", "BAD REQUEST", 400);
     }
