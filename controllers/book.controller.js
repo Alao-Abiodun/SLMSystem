@@ -4,8 +4,15 @@ const Error = require("../libs/error");
 
 exports.createBook = async (req, res) => {
   try {
-    const book = req.body;
-    const newBook = await Book.create(book);
+    const { title, description, author, price } = req.body;
+    const { _id } = req.user;
+    const newBook = await Book.create({
+      title,
+      description,
+      author,
+      price,
+      userId: _id,
+    });
     return Response(res).success({ data: newBook }, 201);
   } catch (error) {
     return Response(res).error(error.message, 500);

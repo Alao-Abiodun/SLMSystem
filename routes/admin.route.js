@@ -6,10 +6,10 @@ const {
   blockUser,
 } = require("../controllers/admin.controller");
 
-const { validateAdmin } = require("../middleware/auth");
+const { validateUserToken, validateAdmin } = require("../middleware/auth");
 
 router.post("/signup", adminSignUp);
 router.post("/login", adminSignIn);
-router.delete("/block", validateAdmin, blockUser);
+router.delete("/block", validateUserToken, validateAdmin, blockUser);
 
 module.exports = router;

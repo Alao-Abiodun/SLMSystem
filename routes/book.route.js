@@ -7,9 +7,11 @@ const {
   approveBookRequest,
 } = require("../controllers/book.controller");
 
-router.post("/add", createBook);
-router.delete("/remove/:id", deleteBook);
-router.put("/change/:id", changeBook);
-router.post("/approve", approveBookRequest);
+const { validateUserToken, validateAdmin } = require("../middleware/auth");
+
+router.post("/add", validateUserToken, validateAdmin, createBook);
+router.delete("/remove/:id", validateUserToken, validateAdmin, deleteBook);
+router.put("/change/:id", validateUserToken, validateAdmin, changeBook);
+router.post("/approve", validateUserToken, validateAdmin, approveBookRequest);
 
 module.exports = router;

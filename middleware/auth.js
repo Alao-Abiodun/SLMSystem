@@ -19,7 +19,7 @@ const validateUserToken = (req, res, next) => {
       throw Error("Authorization header is required", "BAD REQUEST", 400);
     }
   } catch (err) {
-    Response(res).error(err, err.code);
+    return Response(res).error(err, 500);
   }
 };
 
@@ -33,7 +33,7 @@ const validateAdmin = (req, res, next) => {
       throw Error("You are not authorised to access this route", "", 401);
     }
   } catch (err) {
-    Response(res).error(err, err.code);
+    return Response(res).error(err, 500);
   }
 };
 
