@@ -4,7 +4,8 @@ const {
   createBook,
   deleteBook,
   changeBook,
-  approveBookRequest,
+  approveBookRequestForBorrow,
+  approveBookRequestForBuying,
 } = require("../controllers/book.controller");
 
 const { validateUserToken, validateAdmin } = require("../middleware/auth");
@@ -12,6 +13,17 @@ const { validateUserToken, validateAdmin } = require("../middleware/auth");
 router.post("/add", validateUserToken, validateAdmin, createBook);
 router.delete("/remove/:id", validateUserToken, validateAdmin, deleteBook);
 router.put("/change/:id", validateUserToken, validateAdmin, changeBook);
-router.post("/approve", validateUserToken, validateAdmin, approveBookRequest);
+router.post(
+  "/approveBookForBorrow",
+  validateUserToken,
+  validateAdmin,
+  approveBookRequestForBorrow
+);
+router.post(
+  "/approveBookForPurchasing",
+  validateUserToken,
+  validateAdmin,
+  approveBookRequestForBuying
+);
 
 module.exports = router;

@@ -48,7 +48,20 @@ exports.changeBook = async (req, res) => {
   }
 };
 
-exports.approveBookRequest = async (req, res) => {
+exports.approveBookRequestForBorrow = async (req, res) => {
+  try {
+    const { book_type } = req.body;
+    const findBook = await Book.findOne({ title: book_type });
+    if (!findBook) {
+      throw Error("Book is not available", "BAD REQUEST", 401);
+    }
+    return Response(res).success({ data: updateBook }, 200);
+  } catch (error) {
+    return Response(res).error(error.message, 500);
+  }
+};
+
+exports.approveBookRequestForBuying = async (req, res) => {
   try {
     const { book_type } = req.body;
     const findBook = await Book.findOne({ title: book_type });
