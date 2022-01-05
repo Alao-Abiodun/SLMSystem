@@ -34,7 +34,9 @@ const userSchema = new Schema({
   },
   image: {
     type: String,
-    required: true,
+    lowercase: true,
+    default:
+      "https://res.cloudinary.com/oluwatobiloba/image/upload/v1628753027/Grazac/avatar_cihz37.png",
   },
   role: {
     type: String,

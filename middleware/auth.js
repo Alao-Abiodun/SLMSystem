@@ -12,7 +12,7 @@ const validateUserToken = (req, res, next) => {
       if (!result) {
         throw Error("Invalid bearer token", "BAD REQUEST", 400);
       } else {
-        req.decoded = result;
+        req.user = result;
         next();
       }
     } else {
@@ -25,7 +25,7 @@ const validateUserToken = (req, res, next) => {
 
 const validateAdmin = (req, res, next) => {
   try {
-    const { role } = req.decoded;
+    const { role } = req.user;
     console.log(role);
     if (role === "Admin") {
       next();

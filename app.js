@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
 
 dotenv.config();
 
@@ -21,13 +21,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(cors());
 app.use(express.static("./public"));
-app.use(
-  fileUpload({
-    createParentPath: true,
-    limits: { fileSize: 2000000 },
-    abortOnLimit: true,
-  })
-);
+// app.use(
+//   fileUpload({
+//     createParentPath: true,
+//     limits: { fileSize: 2000000 },
+//     abortOnLimit: true,
+//   })
+// );
 
 app.get("/", (req, res) => {
   res.status(200).json({
